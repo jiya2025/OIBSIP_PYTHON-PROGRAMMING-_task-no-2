@@ -1,0 +1,44 @@
+def get_valid_input(prompt, min_val=1, max_val=300):
+    """Get a valid float input within a specified range."""
+    while True:
+        try:
+            value = float(input(prompt))
+            if min_val <= value <= max_val:
+                return value
+            else:
+                print(f"⚠️ Please enter a value between {min_val} and {max_val}.")
+        except ValueError:
+            print("❌ Invalid input. Please enter a numeric value.")
+
+def calculate_bmi(weight, height):
+    """Calculate BMI using the formula: BMI = weight / (height^2)."""
+    return weight / (height ** 2)
+
+def categorize_bmi(bmi):
+    """Categorize the BMI based on standard ranges."""
+    if bmi < 18.5:
+        return "Underweight"
+    elif 18.5 <= bmi < 25:
+        return "Normal weight"
+    elif 25 <= bmi < 30:
+        return "Overweight"
+    else:
+        return "Obese"
+
+def main():
+    print("🏋️ Welcome to the AI-powered BMI Calculator!\n")
+    
+    # AI-like interaction
+    name = input("👤 What is your name? ")
+    print(f"Hi {name}, let's calculate your BMI!")
+
+    weight = get_valid_input("⚖️ Enter your weight in kg: ", 1, 300)
+    height = get_valid_input("📏 Enter your height in meters: ", 0.5, 2.5)
+
+    bmi = calculate_bmi(weight, height)
+    category = categorize_bmi(bmi)
+
+    print(f"\n📊 {name}, your BMI is {bmi:.2f}. You are categorized as: {category}.")
+
+if __name__ == "__main__":
+    main()
